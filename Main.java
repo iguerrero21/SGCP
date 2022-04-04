@@ -3,16 +3,11 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.List;
-import com.opencsv.*;
+//import java.util.List;
+//import com.opencsv.*;
 
 public class Main {
 
-    String nombre;
-    String apellido;
-    int fechaNac;
-    int id;
-    static String[] usuario;
 
     public static void main(String[] args) throws IOException {
         System.out.println("Hola, bienvenido/a al Sistema de Gestión de la Clínica San Camilo.");
@@ -58,39 +53,14 @@ public class Main {
                     System.out.println("Su Clave debe tener 4 dígitos. Inténtelo nuevamente.");
                 }
             }
-    //        String[] usuario = buscarUsuario(dni, clave);
+
             String[] usuario = leerCSV(dni, clave);
             System.out.println(Arrays.toString(usuario));
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
-
-//    private static String[] buscarUsuario(int a, int b) {
-//        /* Busca el DNI del usuario en la Base de Datos USUARIOS (.csv).
-//         * Si la búsqueda arroja resultado, devuelve los datos del usuario.
-//         * Si la búsqueda resulta negativa, invita al usuario a registrarse. */
-//        try {
-//            CSVReader csvFile = new CSVReader(new FileReader("usuarios.csv"));
-//            List<String[]> allData = csvFile.readAll();
-//
-////            while (allData.hasNext() != null) {
-////                usuario = allData.next();
-////                usuario.split(",");
-////                System.out.print(usuario);
-////            }
-//
-//            for (String[] fila : allData) {
-//                for (String dato : fila) {
-//                    System.out.print(dato + "\t");
-//                }
-//                System.out.println();
-//            }
-//            return usuario;
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 
     public static String[] leerCSV(int dni, int clave) throws IOException {
         // Opens the file for reading
@@ -115,9 +85,6 @@ public class Main {
         }
     }
 
-//    static compararClave(clave) {
-//        /* Compara el hash de la clave ingresada con el hash almacenado. */
-//    }
     private static void crearUsuario() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese su/s Nombre/s de pila: ");
