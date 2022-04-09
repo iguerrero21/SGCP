@@ -10,7 +10,7 @@ public class Main {
 
 
     public static void main(String[] args) throws IOException {
-        System.out.println("Hola, bienvenido/a al Sistema de Gestión de la Clínica San Camilo.");
+        System.out.println("Hola, bienvenido/a al Sistema de Gestión de Turnos.");
         bienvenida();
     }
 
@@ -21,7 +21,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int seleccion = scanner.nextInt();
         switch (seleccion) {
-            case 1 -> logueo();
+            case 1 -> loguearPaciente();
             case 2 -> crearUsuario();
             default -> {
                 System.out.println("Opción no encontrada.");
@@ -30,7 +30,7 @@ public class Main {
         }
     }
 
-    private static void logueo() {
+    private static void loguearPaciente() {
         try {
             int numDigitos = 0;
             int dni = 0;
@@ -97,7 +97,7 @@ public class Main {
         System.out.println("2 dígitos para el mes y cuatro para el año. Por ejemplo, 2 de marzo de 1973 sería: ");
         System.out.println("02031973");
         int fechaNac = scanner.nextInt();
-        Usuario user = new Usuario();
+        Paciente user = new Paciente();
         Console console = System.console();
         char[] password = console.readPassword();
         System.out.println("Password entered by user: " + new String(password));
