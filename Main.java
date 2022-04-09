@@ -1,10 +1,8 @@
 import java.io.*;
-//import java.util.HashSet;
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Scanner;
-//import java.util.List;
 //import com.opencsv.*;
+import java.time.*;
 
 public class Main {
 
@@ -16,8 +14,9 @@ public class Main {
 
     private static void bienvenida() {
         System.out.println("Para continuar, elija una de las siguientes opciones:");
-        System.out.println("1. Ingresar con DNI");
-        System.out.println("2. Soy usuario nuevo");
+        System.out.println("1. Sacar Turno");
+        System.out.println("2. Crear nuevo Usuario");
+        System.out.println("3. Gestionar Pacientes");
         Scanner scanner = new Scanner(System.in);
         int seleccion = scanner.nextInt();
         switch (seleccion) {
@@ -79,7 +78,6 @@ public class Main {
                 if (dni == dniGuardado) {
                     return values;
                 }
-
             }
             return null;
         }
@@ -93,20 +91,16 @@ public class Main {
         String apellido = scanner.nextLine();
         System.out.print("Ahora, " + nombre + ", ingresá los 8 dígitos de tu DNI: ");
         int dni = scanner.nextInt();
-        System.out.println("Genial, falta menos. Ingresá tu fecha de nacimiento. Usa 2 dígitos para el día,");
+        System.out.println("Ingrese su domicilio:");
+        String domicilio = scanner.nextLine();
+        System.out.println("Genial, falta menos. Ingrese su fecha de nacimiento. Usa 2 dígitos para el día,");
         System.out.println("2 dígitos para el mes y cuatro para el año. Por ejemplo, 2 de marzo de 1973 sería: ");
         System.out.println("02031973");
-        int fechaNac = scanner.nextInt();
-        Paciente user = new Paciente();
-        Console console = System.console();
-        char[] password = console.readPassword();
-        System.out.println("Password entered by user: " + new String(password));
+        CharSequence fecha = scanner.nextInt();
+        LocalDate fechaNac = new LocalDate();
+        fechaNac.of(fecha.subSequence(4, 8), fecha.subSequence((2, 4), fecha.subSequence(0, 2)));
 
-/*
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        String bCryptedPassword = bCryptPasswordEncoder.encode("password");
-        boolean passwordIsValid = bCryptPasswordEncoder.matches("password", bCryptedPassword)
-*/
+        Paciente paciente = new Paciente(nombre, apellido, domicilio, dni, fechaNac);
 
     }
 }
